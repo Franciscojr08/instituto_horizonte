@@ -1,0 +1,3 @@
+# Serviços locais desligados (docker compose stop): LLM :8091 e embeddings :8092 fora do ar
+$ python -c "from tool_agente import buscar_normas; print(buscar_normas.invoke({...}))"
+{"resultado": "erro_servico", "mensagem": "servidor de embeddings indisponível (APIConnectionError)"}

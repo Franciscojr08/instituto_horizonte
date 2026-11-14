@@ -1,0 +1,34 @@
+{
+  "SOL-1001": {
+    "tipo": "declaracao_matricula",
+    "descricao": "Declaração de matrícula não disponibilizada no portal",
+    "turma": null,
+    "justificativa": null,
+    "status": "em_analise",
+    "criado_em": "2026-11-03T10:15:00-03:00"
+  },
+  "SOL-1002": {
+    "tipo": "suporte_tecnico",
+    "descricao": "Erro de autenticação na biblioteca digital",
+    "turma": null,
+    "justificativa": null,
+    "status": "resolvido",
+    "criado_em": "2026-10-28T14:40:00-03:00"
+  },
+  "SOL-1003": {
+    "tipo": "segunda_via_certificado",
+    "descricao": "Segunda via do certificado do módulo 1",
+    "turma": "6001",
+    "justificativa": "Certificado original extraviado",
+    "status": "aguardando_estudante",
+    "criado_em": "2026-11-05T09:00:00-03:00"
+  },
+  "SOL-1004": {
+    "tipo": "segunda_via_certificado",
+    "descricao": "Solicitação de segunda via do certificado",
+    "turma": "6001",
+    "justificativa": "Perdi o certificado original",
+    "status": "aberto",
+    "criado_em": "2026-11-11T16:07:06-03:00"
+  }
+}

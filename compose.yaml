@@ -1,0 +1,71 @@
+# Serviços locais do agente do Instituto Horizonte (modalidade E: tudo local).
+# O backend Python roda no venv do host; aqui sobem só LLM, embeddings e pgvector.
+#
+#   docker compose up -d        # sobe e espera os healthchecks com: docker compose ps
+#   docker compose stop         # para e devolve a memória
+#
+# Modelos GGUF: pasta MODELOS_DIR (padrão ./modelos), montada só leitura. Ver README para baixar.
+# RAM: o LLM usa ~12 GB. Não deixe outro servidor de modelo grande ligado ao mesmo tempo.
+name: horizonte
+
+services:
+  llm:
+    # llama.cpp server com digest fixado (a tag "server" muda com frequência)
+    image: ghcr.io/ggml-org/llama.cpp@sha256:89f180f16f295ee496fe00924ec2118cae2efec519d1a82c605420af09d2a6df
+    container_name: horizonte-llm
+    ports:
+      - "127.0.0.1:8091:8080"
+    volumes:
+      - ${MODELOS_DIR:-./modelos}:/models:ro
+    # --jinja ativa o template de chat do modelo, necessário para Tool Calling
+    command: >
+      -m /models/${LLM_GGUF:-Qwen3-30B-A3B-Instruct-2507-UD-Q2_K_XL.gguf}
+      --alias ${LLM_MODEL:-qwen3-30b}
+      -c ${LLM_CONTEXTO:-16384} -np 1 -t ${LLM_THREADS:-4} --jinja
+      --host 0.0.0.0 --port 8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 60
+
+  embeddings:
+    image: ghcr.io/ggml-org/llama.cpp@sha256:89f180f16f295ee496fe00924ec2118cae2efec519d1a82c605420af09d2a6df
+    container_name: horizonte-embeddings
+    ports:
+      - "127.0.0.1:8092:8080"
+    volumes:
+      - ${MODELOS_DIR:-./modelos}:/models:ro
+    # Qwen3-Embedding usa o último token (pooling last) e gera vetores de 1024 dimensões
+    command: >
+      -m /models/${EMBEDDING_GGUF:-Qwen3-Embedding-0.6B-Q8_0.gguf}
+      --alias ${EMBEDDING_MODEL:-qwen3-embedding-0.6b}
+      --embedding --pooling last
+      -c 8192 -b 2048 -ub 2048 -np 2 -t 2
+      --host 0.0.0.0 --port 8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  pgvector:
+    image: pgvector/pgvector:0.8.6-pg17
+    container_name: horizonte-pgvector
+    environment:
+      POSTGRES_USER: horizonte
+      POSTGRES_PASSWORD: horizonte   # banco local, exposto só em 127.0.0.1
+      POSTGRES_DB: horizonte
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - horizonte_pgvector:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U horizonte -d horizonte"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  horizonte_pgvector:

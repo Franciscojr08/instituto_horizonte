@@ -1,0 +1,8 @@
+{"ts": "2026-11-12T09:28:37.178-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T01:092837", "evento": "inicio", "thread": "T01", "max_rodadas": 4}
+{"ts": "2026-11-12T09:28:37.184-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T01:092837", "evento": "entrada", "pergunta": "Qual é o prazo para emitir a declaração de matrícula?", "vazia": false, "intencao_registro": false, "continuacao_de_registro": false}
+{"ts": "2026-11-12T09:28:37.671-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T01:092837", "evento": "erro_llm", "rodada": 1, "erro": "OpenAIConnectionError: Connection error."}
+{"ts": "2026-11-12T09:28:37.676-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T01:092837", "evento": "fim", "status": "erro", "fontes": [], "protocolo": null, "rodadas": 1, "motivo_termino": "erro_llm", "tools": []}
+{"ts": "2026-11-12T09:28:37.682-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T04:092837", "evento": "inicio", "thread": "T04", "max_rodadas": 4}
+{"ts": "2026-11-12T09:28:37.691-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T04:092837", "evento": "entrada", "pergunta": "Meu protocolo SOL-1001 já foi resolvido?", "vazia": false, "intencao_registro": false, "continuacao_de_registro": false}
+{"ts": "2026-11-12T09:28:38.099-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T04:092837", "evento": "erro_llm", "rodada": 1, "erro": "OpenAIConnectionError: Connection error."}
+{"ts": "2026-11-12T09:28:38.101-03:00", "sessao": "20261112-092836-cenarios", "execucao": "T04:092837", "evento": "fim", "status": "erro", "fontes": [], "protocolo": null, "rodadas": 1, "motivo_termino": "erro_llm", "tools": []}

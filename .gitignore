@@ -1,0 +1,17 @@
+# Segredos e configuração local
+.env
+
+# Ambiente e caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/
+
+# Modelos GGUF (baixados à parte; ver README)
+modelos/
+
+# Dados gerados em execução
+data/protocolos.json
+data/protocolos.json.tmp
+logs/

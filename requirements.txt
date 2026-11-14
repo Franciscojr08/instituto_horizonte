@@ -1,0 +1,9 @@
+# Python 3.11+ (testado em 3.14). Serviços locais (LLM, embeddings, pgvector) sobem pelo compose.yaml.
+langchain-core>=1.0,<2
+langgraph>=1.0,<2
+langchain-openai>=1.0,<2   # ChatOpenAI apontando para o llama.cpp (API compatível com OpenAI)
+openai>=1.40,<3            # cliente de embeddings
+pydantic>=2.7,<3           # contratos tipados e saída estruturada
+psycopg[binary]>=3.2,<4    # pgvector
+python-dotenv>=1.0,<2
+pytest>=8,<10

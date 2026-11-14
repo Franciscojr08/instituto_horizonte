@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "data": "2026-11-12T09:28:38-03:00",
+    "modelo": "qwen3-30b",
+    "top_k": 3,
+    "score_minimo": 0.55,
+    "max_rodadas": 4,
+    "log": "20261112-092836-cenarios.jsonl"
+  },
+  "resultados": [
+    {
+      "caso": "T01",
+      "pergunta": "Qual é o prazo para emitir a declaração de matrícula?",
+      "objetivo": null,
+      "pre_classificacao": "falhou",
+      "observacoes": [
+        "status 'erro' (esperado ['respondido'])",
+        "fontes faltando: ['ACAD-001']",
+        "Tool não chamada: buscar_normas",
+        "resposta sem nenhum de ['3 dias uteis', 'tres dias uteis']"
+      ],
+      "segundos": 0.5,
+      "resposta": {
+        "resposta": "Não consegui processar sua mensagem agora porque o serviço de IA está indisponível. Tente novamente em instantes.",
+        "status": "erro",
+        "fontes": [],
+        "protocolo": null
+      },
+      "rodadas": 1,
+      "motivo_termino": "erro_llm",
+      "tools": [],
+      "correcoes_validar": [],
+      "variacao_protocolos": 0
+    },
+    {
+      "caso": "T04",
+      "pergunta": "Meu protocolo SOL-1001 já foi resolvido?",
+      "objetivo": null,
+      "pre_classificacao": "falhou",
+      "observacoes": [
+        "status 'erro' (esperado ['protocolo_consultado'])",
+        "protocolo None (esperado SOL-1001)",
+        "Tool não chamada: consultar_protocolo",
+        "resposta sem nenhum de ['analise']"
+      ],
+      "segundos": 0.4,
+      "resposta": {
+        "resposta": "Não consegui processar sua mensagem agora porque o serviço de IA está indisponível. Tente novamente em instantes.",
+        "status": "erro",
+        "fontes": [],
+        "protocolo": null
+      },
+      "rodadas": 1,
+      "motivo_termino": "erro_llm",
+      "tools": [],
+      "correcoes_validar": [],
+      "variacao_protocolos": 0
+    }
+  ]
+}
